@@ -30,8 +30,15 @@ router.post('/', async (req, res, next) => { // eslint-disable-line
   }
 })
 
-router.put('/:id', (req, res, next) => { // eslint-disable-line
-  // DO YOUR MAGIC
+router.put('/:id', async (req, res, next) => { // eslint-disable-line
+  try {
+    const id = req.params.id
+    const { name, budget } = req.body
+    const updatedAcct = await Accounts.updateById(id, { name, budget })
+    res.json(updatedAcct);
+  } catch (err) {
+    next(err)
+  }
 });
 
 router.delete('/:id', (req, res, next) => { // eslint-disable-line
