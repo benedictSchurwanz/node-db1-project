@@ -51,7 +51,10 @@ router.delete('/:id', async (req, res, next) => { // eslint-disable-line
 })
 
 router.use((err, req, res, next) => {  // eslint-disable-line
-  // DO YOUR MAGIC
+  res.status(err.status || 500).json({
+    message: err.message,
+    stack: err.stack,
+  })
 })
 
 module.exports = router;
