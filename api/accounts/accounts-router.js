@@ -20,8 +20,14 @@ router.get('/:id', async (req, res, next) => { // eslint-disable-line
   }
 })
 
-router.post('/', (req, res, next) => { // eslint-disable-line
-  // DO YOUR MAGIC
+router.post('/', async (req, res, next) => { // eslint-disable-line
+  try {
+    const newAcctId = await Accounts.create({ name: req.body.name, budget: req.body.budget })
+    const acct = { budget: req.body.budget, id: newAcctId[0], name: req.body.name }
+    res.json(acct);
+  } catch (err) {
+    next(err)
+  }
 })
 
 router.put('/:id', (req, res, next) => { // eslint-disable-line

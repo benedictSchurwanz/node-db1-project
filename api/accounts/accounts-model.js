@@ -11,7 +11,12 @@ const getById = async id => {
 }
 
 const create = account => {
-  // DO YOUR MAGIC
+  // `account` will be an object with the relevant fields: id, name, budget.
+  return db('accounts')
+    .insert({
+      name: account.name,
+      budget: account.budget
+    })
 }
 
 const updateById = (id, account) => {
