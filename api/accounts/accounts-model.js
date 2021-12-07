@@ -10,8 +10,7 @@ const getById = async id => {
     .where('id', id);
 }
 
-const create = account => {
-  // `account` will be an object with the relevant fields: id, name, budget.
+const create = async account => {
   return db('accounts')
     .insert({
       name: account.name,
@@ -19,12 +18,12 @@ const create = account => {
     })
 }
 
-const updateById = (id, account) => {
+const updateById = async (id, account) => {
   return db('accounts').where({id: id}).update({name: account.name, budget: account.budget})
 }
 
-const deleteById = id => {
-  // DO YOUR MAGIC
+const deleteById = async id => {
+  return db('accounts').where('id', id).delete()
 }
 
 module.exports = {
