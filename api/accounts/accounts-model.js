@@ -1,13 +1,13 @@
 const db = require('../../data/db-config')
 
 const getAll = async () => {
-  const accounts = db('accounts')
-  console.log(accounts)
-  return accounts
+  return db('accounts')
 }
 
-const getById = id => {
-  // DO YOUR MAGIC
+const getById = async id => {
+  return db('accounts')
+    .select()
+    .where('id', id);
 }
 
 const create = account => {
